@@ -69,7 +69,7 @@ const StageStrategies = () => {
         <div className="grid gap-6 md:grid-cols-2">
           {strategies.map((strategy) => (
             <Link 
-              href={`/chat/${strategy.id}`} 
+              href="/chat"
               key={strategy.id}
               className="group block"
             >

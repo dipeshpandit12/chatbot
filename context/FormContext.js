@@ -1,7 +1,7 @@
 "use client"
 import { createContext, useContext, useState } from 'react';
 
-const FormContext = createContext();
+export const FormContext = createContext();
 
 export function FormProvider({ children }) {
     const [formData, setFormData] = useState({
