@@ -10,6 +10,8 @@ import {
   BsInstagram,
   BsTiktok
 } from 'react-icons/bs';
+import { useFormData } from '@/context/FormContext';
+import { useRouter } from 'next/navigation';
 
 
 const styles = {
@@ -113,6 +115,8 @@ export default function Form() {
     5: 'Expert'
   };
   const [businessDesc, setBusinessDesc] = useState('');
+  const { updateFormData } = useFormData();
+  const router = useRouter();
 
   // Complete industry options
   const industryOptions = [
@@ -149,12 +153,22 @@ export default function Form() {
     }));
   };
 
-  const onPlaceSelected = () => {
-    const place = autocompleteRef.current.getPlace();
-    if (place.formatted_address) {
-      setLocation(place.formatted_address);
-    }
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formDataToSave = {
+        employeeRange,
+        location,
+        industry: industry?.value,
+        socialMediaExp,
+        socialPlatforms,
+        businessDesc
+    };
+
+    // Update context with form data
+    updateFormData(formDataToSave);
+    // Navigate to discover page
+    router.push('/discoverStage');
+};
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
@@ -171,9 +185,6 @@ export default function Form() {
       });
     }
   };
-
-
-
 
 return (
     <div style={styles.container}>
@@ -208,7 +219,7 @@ return (
 
             {/* Form container */}
             <div style={styles.formWrapper}>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                     {/* Rest of your form components with inline styles */}
                     <div style={{ marginBottom: '1.5rem' }}>
                         <label style={styles.label}>

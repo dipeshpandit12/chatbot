@@ -21,9 +21,9 @@ const LandingPage = () => {
                 <div className="text-xl font-bold text-gray-800" style={{ fontFamily: 'Lora, serif' }}>LOGO</div>
                 <div className="hidden md:flex space-x-6">
                   <Link href="/" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>Home</Link>
-                  <Link href="/form" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>Services</Link>
-                  <Link href="/personalizedStatistics" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>About</Link>
-                  <Link href="/discoverStage" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>Contact</Link>
+                  <Link href="/" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>Services</Link>
+                  <Link href="/" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>About</Link>
+                  <Link href="/" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>Contact</Link>
                 </div>
               </div>
 
@@ -76,7 +76,7 @@ const LandingPage = () => {
               Grow Your Business With AI
             </p>
             <Link 
-              href="/questionnaire" 
+              href="/form"
               className="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               style={{ fontFamily: 'Lora, serif' }}
             >
