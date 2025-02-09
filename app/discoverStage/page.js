@@ -90,7 +90,7 @@ const BusinessStagesOverview = () => {
                   ))}
                 </ul>
                 {stage.id === currentStage && (
-                  <Link href="/chat" className="block text-right mt-4">
+                  <Link href="/personalizedStatistics" className="block text-right mt-4">
                     <button
                       className="bg-blue-600 hover:bg-blue-700 
                       text-white px-4 py-2 rounded-md text-sm transition-colors duration-200"
