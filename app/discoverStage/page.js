@@ -1,11 +1,12 @@
 "use client"
 import React from 'react';
+import Link from 'next/link'
 
 const BusinessStagesOverview = () => {
   const stages = [
     {
       id: 1,
-      title: "Startup Stage (0-1 year)",
+      title: "Stage: 1",
       challenges: [
         "Low brand awareness",
         "Limited budget for advertising",
@@ -15,7 +16,7 @@ const BusinessStagesOverview = () => {
     },
     {
       id: 2,
-      title: "Growth Stage (1-3 years)",
+      title: "Stage: 2",
       challenges: [
         "Gaining trust and credibility",
         "Struggling with engagement & conversions",
@@ -25,7 +26,7 @@ const BusinessStagesOverview = () => {
     },
     {
       id: 3,
-      title: "Established Stage (3-5 years)",
+      title: "Stage: 3",
       challenges: [
         "Need for rebranding & higher engagement",
         "Expanding customer base beyond local market",
@@ -35,7 +36,7 @@ const BusinessStagesOverview = () => {
     },
     {
       id: 4,
-      title: "Scaling Stage (5+ years)",
+      title: "Stage: 4",
       challenges: [
         "Expanding beyond social media",
         "Managing customer service at scale",
@@ -53,7 +54,6 @@ const BusinessStagesOverview = () => {
         <h1 className="text-3xl md:text-4xl font-bold text-black text-center mb-4">
           Your Business Journey: Discover Your Stage
         </h1>
-        
         {/* Current Stage Indicator */}
         <div className="text-center mb-12">
           <span className="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-lg">
@@ -64,9 +64,9 @@ const BusinessStagesOverview = () => {
         {/* All Stages */}
         <div className="space-y-8">
           {stages.map((stage) => (
-            <div 
+            <div
               key={stage.id}
-              className={`bg-white rounded-lg shadow-md p-8 transition-all
+              className={`bg-white rounded-lg shadow-md p-8 transition-all relative
                 ${stage.id === currentStage ? 'ring-2 ring-blue-600 transform scale-102' : ''}`}
             >
               <h2 className={`text-2xl font-bold mb-6 flex items-center
@@ -89,6 +89,16 @@ const BusinessStagesOverview = () => {
                     </li>
                   ))}
                 </ul>
+                {stage.id === currentStage && (
+                  <Link href="/chat" className="block text-right mt-4">
+                    <button
+                      className="bg-blue-600 hover:bg-blue-700 
+                      text-white px-4 py-2 rounded-md text-sm transition-colors duration-200"
+                    >
+                      Get Solutions →
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           ))}
