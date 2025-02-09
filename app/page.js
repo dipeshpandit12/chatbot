@@ -21,7 +21,7 @@ const LandingPage = () => {
                 <div className="text-xl font-bold text-gray-800" style={{ fontFamily: 'Lora, serif' }}>LOGO</div>
                 <div className="hidden md:flex space-x-6">
                   <Link href="/" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>Home</Link>
-                  <Link href="/services" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>Services</Link>
+                  <Link href="/form" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>Services</Link>
                   <Link href="/personalizedStatistics" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>About</Link>
                   <Link href="/discoverStage" className="text-gray-600 hover:text-gray-800" style={{ fontFamily: 'Lora, serif' }}>Contact</Link>
                 </div>
