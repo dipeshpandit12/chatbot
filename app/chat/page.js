@@ -20,25 +20,26 @@ export default function Chat() {
         return {
             role: 'assistant',
             content: `Hello! I understand you're looking to establish a web presence for your ${formData.industry} business. 
-Based on your profile:
-• Your business has ${formData.employeeRange} employees
-• You're located in ${formData.location}
-• You have ${getExperienceLevel(formData.socialMediaExp)} experience with social media
-${platforms ? `• Currently using: ${platforms}` : ''}
-Would you like assistance creating a business website?
-`
+
+**Based on your profile:**
+• Business size: ${formData.employeeRange} employees
+• Location: ${formData.location}
+• Social media experience: ${getExperienceLevel(formData.socialMediaExp)}
+${platforms ? `• Active platforms: ${platforms}` : ''}
+
+Would you like assistance creating a business website?`
         }
     }
 
     const getExperienceLevel = (level) => {
         const levels = {
-            1: 'beginner',
-            2: 'basic',
-            3: 'intermediate',
-            4: 'advanced',
-            5: 'expert'
+            1: 'Beginner',
+            2: 'Basic',
+            3: 'Intermediate',
+            4: 'Advanced',
+            5: 'Expert'
         }
-        return levels[level] || 'intermediate'
+        return levels[level] || 'Intermediate'
     }
 
     useEffect(() => {
@@ -102,6 +103,26 @@ Would you like assistance creating a business website?
             setIsLoading(false)
         }
     }
+    const formatMessageContent = (content) => {
+        return content.split('\n').map((line, index) => {
+            if (line.startsWith('**') && line.endsWith('**')) {
+                return (
+                    <strong key={index} className="block mb-2 font-semibold text-gray-800">
+                        {line.replace(/\*\*/g, '')}
+                    </strong>
+                )
+            }
+            if (line.startsWith('•')) {
+                return (
+                    <div key={index} className="flex items-start ml-4 mb-1">
+                        <span className="mr-2">•</span>
+                        <span>{line.substring(1)}</span>
+                    </div>
+                )
+            }
+            return <p key={index} className="mb-2">{line}</p>
+        })
+    }
 
     return (
         <div className="min-h-screen bg-[#F5F5DC] font-['Lora']">
@@ -123,36 +144,34 @@ Would you like assistance creating a business website?
                         ref={chatContainerRef}
                     >
                         {messages.map((message, index) => (
-                            <div
-                                key={index}
-                                className={`mb-4 flex ${
-                                    message.role === 'user' ? 'justify-end' : 'justify-start'
-                                }`}
-                            >
-                                <div className={`flex items-start max-w-[80%] ${
-                                    message.role === 'user' 
-                                        ? 'bg-blue-600 text-white rounded-l-lg rounded-br-lg' 
-                                        : 'bg-white border border-gray-200 rounded-r-lg rounded-bl-lg'
-                                } p-4 shadow-sm`}>
-                                    {message.role === 'assistant' && (
-                                        <div className="mr-3 flex-shrink-0">
-                                            <Image
-                                                src="/chatbot.png"
-                                                alt="Bot"
-                                                width={24}
-                                                height={24}
-                                                className="rounded-full"
-                                            />
-                                        </div>
-                                    )}
-                                    <div className={`${
-                                        message.role === 'user' ? 'text-white' : 'text-gray-800'
-                                    }`}>
-                                        {message.content}
-                                    </div>
-                                </div>
+                <div
+                    key={index}
+                    className={`mb-4 flex ${
+                        message.role === 'user' ? 'justify-end' : 'justify-start'
+                    }`}
+                >
+                    <div className={`flex items-start max-w-[80%] ${
+                        message.role === 'user' 
+                            ? 'bg-blue-600 text-white rounded-l-lg rounded-br-lg' 
+                            : 'bg-white border border-gray-200 rounded-r-lg rounded-bl-lg'
+                    } p-4 shadow-sm`}>
+                        {message.role === 'assistant' && (
+                            <div className="mr-3 flex-shrink-0">
+                                <Image
+                                    src="/chatbot.png"
+                                    alt="Bot"
+                                    width={32}
+                                    height={32}
+                                    className="rounded-full"
+                                />
                             </div>
-                        ))}
+                        )}
+                        <div className={`${message.role === 'user' ? 'text-white' : 'text-gray-800'} text-sm`}>
+                            {formatMessageContent(message.content)}
+                        </div>
+                    </div>
+                </div>
+            ))}
                         {isLoading && (
                             <div className="flex justify-start">
                                 <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
@@ -176,8 +195,8 @@ Would you like assistance creating a business website?
                             className="flex-1 px-4 py-2 border text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
                             disabled={isLoading}
                         />
-                        <button 
-                            type="submit" 
+                        <button
+                            type="submit"
                             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition-colors duration-200 disabled:bg-blue-400"
                             disabled={isLoading}
                         >
